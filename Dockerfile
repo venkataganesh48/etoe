@@ -1,7 +1,7 @@
 FROM alpine/git as clone
 MAINTAINER stangella<stangella9@gmail.com>
 WORKDIR /app
-RUN git clone https://github.com/SriDevops-T/EcommWeb.git
+RUN git clone https://github.com/sresrinivas/etoe.git
 # stage-two
 FROM maven:3.5-jdk-8-alpine as build
 WORKDIR /app
