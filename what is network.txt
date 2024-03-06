@@ -1,0 +1,29 @@
+what is network
+types of networks
+what is host
+what is ip
+what is mac
+what is osi and its layers
+what is tcp
+what is gateway
+what is router
+what is port
+what is switch
+what is vpc
+what is subnet
+typs of subnets
+what is dhcp
+
+to work with ifconfig command onrhel, we need to install
+ a apckage called net-tools
+
+
+sudo yum install -y net-tools
+yum install network-scripts
+
+
+
+
+
+
+

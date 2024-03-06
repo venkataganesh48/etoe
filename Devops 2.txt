@@ -1,0 +1,175 @@
+using ssh we are connecting to linux server.
+default port for ssh connection is 22
+ssh--secure shell
+
+http://www.google.com
+
+protocol://ipaddress:port
+How to creat the user in linux:
+_________________________________
+
+sudo useradd username
+sudo useradd charan
+
+sudo --------->super user do or substitute user do
+To login as root:
+_____________________
+sudo su -
+
+WHERE users are locataed:
+_____________________________
+when ever admin or super user created the user account, linux update all the
+  user information along with some addtional info in to
+
+    /etc/passwd
+
+exit : isa command used to close the current sesson and swith to the next session
+         
+
+what is the diff between exit and logout command in linux
+
+
+how to set the password for the created user:
+________________________________________________
+
+  sudo passwd username
+  sudo passwd charan
+    
+how to login to specific user:
+__________________________________
+
+
+ su - username
+
+  
+
+passwords are saved in /etc/shadow
+
+what is the use of $?
+___________________________
+
+   is a command line argument in linux
+   used to capture or fetch the command or script execution status
+   if it success, it returna the value as 0 else it return non-zero code like
+   127....
+
+
+use of !!
+_____________
+
+  is a command line argument in linux
+   used to recall  the previous command and it updates the history with executed
+    command
+
+how to create the groups in linux:
+______________________________________
+sudo groupadd devops
+
+in linux groups are saved in /etc/group
+
+
+
+/etc/passwd
+
+/etc/default/useradd
+
+
+/etc/skel
+
+how to chnage the user loginname:
+sudo usermod -l newusername oldeusername
+
+sudo usermod -l saicharan charan
+
+how to modify the userid of the user:
+______________________________________
+
+
+sudo usermod -u newuserid username
+
+sudo usermod -u 1004 charan
+
+
+
+useradd
+usermod
+userdel
+
+groupadd
+groupmod
+groupdel
+
+sudo 
+su
+ super user---admin
+  normal user----------------1000
+  network user---ldap/ad-remote login 
+
+service account user: 
+
+system user
+                 static user: 1-200
+                dynamic user: 201-999
+ 0
+1-1000
+
+
+
+last : is acommand used to idenitfy the who are lastely loggin to server
+
+lastb: is a command used to print the last falied login ro bad attempts as logins to thserver
+
+
+how to    lock the user account:
+_____________________________________
+
+  sudo passwd -l username
+how to unlock the  useraccount:
+_________________________________
+
+  sudo passwd -u username
+
+
+/etc/passwd
+/etc/shadow
+/etc/group
+/etc/gshadow
+/etc/default/useradd
+/etc/skel
+/etc/sudoers
+
+
+
+
+/etc/passwd-   ->is a backup file for the users 
+how to add mulitple users at time to the system--newusers
+how to work with chpasswd command
+is it possible to login as group?
+if i can, how to change the grouppasswd 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

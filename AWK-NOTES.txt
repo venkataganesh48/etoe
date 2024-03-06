@@ -1,0 +1,374 @@
+>awk is a program which has its own programming languages
+for performing data processing and to generate reports
+>awk is very powerful tool for valdiations
+
+>The GNU  version of awk is gawk
+>done 
+done
+
+> awk processes data ,which can be recieved from a standard nput ,input file or as the o/p of any other command or process
+>awk processes data similar to sed such as lines by line.it processes every line for the specified pattern
+and performs specified actions.if patterns is specified
+
+then all the lines containing specified pattern will be displayed .if pattern is not specified then the specified actions will be performed on all the lines.
+
+
+Many utility tools exist in the Linux operating system to search and generate a report from text data or file. The user can easily perform many types of searching, replacing and report generating tasks by using awk, grep and sed commands. awk is not just a command. It is a scripting language that can be used from both terminal and awk file. It supports the variable, conditional statement, array, loops etc. like other scripting languages. It can read any file content line by line and separate the fields or columns based on a specific delimiter. It also supports regular expression for searching particular string in the text content or file and takes actions if any match founds.
+
+
+
+
+
+
+
+
+using awk:
+_________________
+
+the following are different ways to use awk 
+case 1: syntax while using only pattern
+______________________________________________
+  $awk 'pattern' filename
+
+syntax using only actions
+_______________________________
+ awk '{action}' filename
+
+syntax using pattern and action
+__________________________________
+awk 'pattern {action}' filename
+
+=========================================================================================================================================
+
+
+
+
+Using awk with printf:
+___________________________
+printf() function is used to format any output in most of the programming languages. This function can be used with awk command to generate different types of formatted outputs. awk command mainly used for any text file. Create a text file named employee.txt with the content given below where fields are separated by tab (‘\t’).
+
+$ awk '{ printf  "%10s\n", $1 }' people.txt
+
+The following awk command will read data from people.txt file line by line and print the first filed after formatting. Here, “%10s\n” means that the output will be 10 characters long. If the value of the output is less than 10 characters then the spaces will be added at the front of the value.
+
+=================================================================================================================================
+Input from files:
+__________________________
+
+cat people.txt
+Bill    Thamas    9000    08/9/1969
+Fred    Matrin    6500    22/7/1982
+Julie   Moore     4500    25/2/1978
+Marie   Jones     6000    05/8/1972
+Tom     Walker    7200    14/1/1977
+
+case1: awk '/Martin/' people.txt
+
+case 2:  awk '{print $1}' people.txt
+
+the above command prints the first filed of all the lines from the people.txt file.
+
+case3: awk '/Martin/{print $1,$2}' people.txt
+
+this prints the first and second field of the line that
+  contains the Martin pattern
+
+===================================================================================================================================
+
+
+
+awk to split on white space
+The default word or field separator for splitting any text is white space. awk command can take text value as input in various ways. The input text is passed from echo command in the following example. The text, ‘I like programming’ will be split by default separator, space, and the third word will be printed as output.
+
+$ echo 'I like programming' | awk '{ print $3 }'
+
+
+awk to change the delimiter
+awk command can be used to change the delimiter for any file content. Suppose, you have a text file named phone.txt with the following content where ‘:’ is used as field separator of the file content.
+
+
+phone.txt
+
++123:334:889:778
++880:1855:456:907
++9:7777:38644:808
+
+Run the following awk command to change the delimiter, ‘:’ by ‘-’ to the content of the file, phone.txt.
+
+$ cat phone.txt
+$ awk '$1=$1' FS=":" OFS="-" phone.txt
+
+
+============================================================================================================================================
+
+
+
+Input from commands:
+_______________________
+we can use the output of any other linux command as an input as an input to the awk program. we need to use the pipe to send an output of other command as the input to the awk program.
+
+$cat people.txt | awk '$3 >6500'
+
+$cat people.txt | awk '/1972$/{print $1,$2}'
+
+$cat people.txt | awk '$3 > 6500 {print $1,$2}'
+
+How awk works
+__________________
+
+$cat sample.txt
+Happy Birth Day
+we should live every day.
+
+$awk '{print $1, $3}' sample.txt
+
+awk reads a line from the file and puts it into an internal variable called $0.each line is called record.
+by default every line is terminated by a new line.
+
+then every record or line is divided into separate words or fields .every word s stored in numbered variables $1,$2 and so on.there can be as many as 100 fields per record
+
+awk has an internal variable called as IFS(internal field  separator).IFS is normally whitespace.whitespace includes tabs and spaces .the fileds will be separated by IFS.if we want to specify any other IFS such as colon: in the  /etc/passwd file,then we will need to specify it in the awk commandline
+
+note: when awk checks an action as '{print $1, $3}',it tells awk to print the first and  3 field .fields will be separated by space.the command will be as follows
+ awk '{print $1,$3}' sample.txt
+=======================================================
+
+awk commands from within a file:
+___________________________________
+>we can put awk commands in a file. we will need to use the -f option before using the awk  script file name to
+inform about using the awk script file for all processing instructions.
+
+>awk will copy the first line from the data file to be processed in $0 and then it will apply all processing instructions  on that record .then it will discard that
+record and load the next line from the data file.this way it will proceed till the last line of the data file. if the actions is not specified ,the pattern  matching lines will be printed  on screen.if the pattern is not specified then the specified action will be performed on all lines of the data file.
+
+$ cat people.txt
+$cat awk_script /Matin/{print $1, $2}
+now enter the next command as follows
+$awk -f awk_script people.txt
+================================================================================================================================================
+
+Built-In Variables In Awk
+
+Awk’s built-in variables include the field variables—$1, $2, $3, and so on ($0 is the entire line) — that break a line of text into individual words or pieces called fields. 
+
+NR: NR command keeps a current count of the number of input records. Remember that records are usually lines. Awk command performs the pattern/action statements once for each record in a file. 
+NF: NF command keeps a count of the number of fields within the current input record. 
+FS: FS command contains the field separator character which is used to divide fields on the input line. The default is “white space”, meaning space and tab characters. FS can be reassigned to another character (typically in BEGIN) to change the field separator. 
+RS: RS command stores the current record separator character. Since, by default, an input line is the input record, the default record separator character is a newline. 
+OFS: OFS command stores the output field separator, which separates the fields when Awk prints them. The default is a blank space. Whenever print has several parameters separated with commas, it will print the value of OFS in between each parameter. 
+ORS: ORS command stores the output record separator, which separates the output lines when Awk prints them. The default is a newline character. print automatically outputs the contents of ORS at the end of whatever it is given to print. 
+Examples: 
+
+Use of NR built-in variables (Display Line Number)  
+
+$ awk '{print NR,$0}' employee.txt 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+========================================================================================================================
+
+Records and fields:
+______________________
+
+every line terminated by the new line is called record and every word
+separated by whitespace is called field 
+Records:
+_____________
+  
+awk doesnot see the file as one continuous stream of data.but it processes the file line by line .each line is terminated by new newline character .it copies each line in the internal buffer called record
+
+The record separator:
+__________________________
+The default a newline or carriage return is an input record  separator and output record separator.the input record separator is stored in the built-in variable RS and the output record separator is stored in ORS .we can modify the ORS and RS if required
+
+
+The $0 variable:
+____________________
+
+the entire line that is copied in buffer ,such record is called $0
+take the following command for example
+
+$cat people.txt
+$awk '{print $0}' people.txt
+
+this has printed all the lines of the text file .similar results can be seen by the following command.
+$awk '{print}' people.txt
+
+The NR  variable:
+_______________________
+
+awk has built-in variable called NR.it stores the recordnumber .Initially the value stored in NR is 1.then it will be incremented by one for each new record.
+
+$awk '{print NR, $0}' people.txt
+this has printed every record such as $0 with record number which is stored in NR.that is why we see 1 ,2,3 and son on before every line of the output.
+
+Fields:
+_____________
+every line is called record and every word in record is called field. by default ,words or fields are separated by white-space ,thatis space or tab.awk has an internal built-in variable called NF,which will keep track of field numbers. typically the maximum field number will be 100.wch will depend on implementation 
+$awk '{print NR, $1, $2 ,$4}' people.txt
+
+Field separators:
+______________________
+
+every word is separated by white space.
+
+The input field separator
+__________________________________
+the input field separator is whitespace ,by default .we can change this IFS to other values on the command-line or by using the BEGIN 
+statement.we need to use -F option to change IFS
+$cat people.txt
+
+$awk -F: '/Marie/{print $1, $2}' people.txt
+
+we have used the -F option to specify  colon(:) as IFS instead of the
+default IFS. therefor , it has printed field 1 and 2 of the records in which the Marie pattern was matched .we can even specify more than one IFS on the commandline as follows
+
+$awk -F'[ :\t\]' '{print $1, $2, $3}' people.txt
+this will use space,colon and tab characters as internal field separator or IFS
+================================================================================================================================
+
+
+awk with tab-delimited data
+awk command has many built-in variables which are used to read the text in different ways. Two of them are FS and OFS. FS is input field separator and OFS is output field separator variables. The uses of these variables are shown in this section. Create a tab separated file named input.txt with the following content to test the uses of FS and OFS variables.
+
+Input.txt
+
+Client-side   scripting language
+Server-side   scripting language
+Database  Server
+Web  Server
+Using FS variable with tab
+The following command will split each line of input.txt file based on the tab (‘\t’) and print the first field of each line.
+
+
+$ awk '{ print $1 }' FS='\t' input.txt
+
+
+==========================================================================================================================
+
+
+
+awk with CSV data
+The content of any CSV file can be parsed in multiple ways by using awk command. Create a CSV file named ‘customer.csv’  with the following content to apply awk command.
+
+
+customer.txt
+
+Id, Name, email, phone
+1, Sophia, sophia@yahoo.com, (862) 478-7263
+2, Amelia, amelia@gmail.com, (530) 764-8000
+3, Emma, emma@hotmail.com, (542) 986-2390
+Reading single field of CSV file
+
+‘-F’ option is used with awk command to set the delimiter for splitting each line of the file. The following awk command will print the name field of the customer.csv file.
+
+$ cat customer.csv
+$ awk -F "," '{print $2}' customer.csv
+
+Reading multiple fields by combining with other text
+_______________________________________________________
+The following command will print three fields of customer.csv by combining title text, Name, Email, and Phone. The first line of the customer.csv file contains the title of each field. NR variable contains the line number of the file when awk command parses the file. In this example, the NR variable is used to omit the first line of the file. The output will show the 2nd, 3rd and 4th fields of all lines except the first line.
+
+$ awk  -F "," 'NR&gt;1 {print "Name:" $2 ", Email:" $3 ", Phone:" $4}' customer.csv
+
+
+====================================================================================================================================
+
+Patterns and actions
+________________________
+
+
+awk uses the patterns to control the processing of actions.when pattern or regular expression is found in the record then action is
+performed or if no action is defined then awk simply prints the line
+on screen
+$cat people.txt
+
+$awk '/Bill/' people.txt
+
+in above example when the Bill pattern is found in the record that
+record is printed on screen.
+
+$awk '$3 > 5000' people.txt
+
+in above example ,when field 3 is greater that 5000 ,that record is printed on screen
+
+Actions:
+_______________
+
+actions are performed when the required to peform is found in record.
+actions are enclosed in curly brackets such as '{' and '}'.we can
+specify different commands in the same curely brackets ; but those
+should we separated by semicolon
+
+syntax: pattern{ action statment; action statement;....}
+    or
+   pattern
+{
+      action statement
+     action statement
+}
+
+$awk '/Bill/{print $1, $2 ", Happy Birthd Day !"}' people.txt
+
+
+
+note: we can use variables, control statements and lopping staments
+        like other programming language
+
+example:
+______________
+
+vi awk_script
+
+BEGIN
+{
+   do
+{
+   ++x
+    print x
+}while (x<=4)
+}
+$awk -f awk_script
+
+
+
+
+Searching string at the start of the line
+_________________________________________________
+‘^’ symbol is used in the regular expression to search any pattern at the starting of the line. ‘Linux’ word will be searched at the starting of each line of the text in the following example. Here, two lines start with the text, ‘Linux’ and those two lines will be shown in the output.
+
+$ echo -e "Linux is free to use\n It is an open-source software\nLinuxHint is
+ a popular blog site" | awk '/^Linux/'
+
+
+
+
+
+Searching string at the end of the line:
+____________________________________________________
+‘$’ symbol is used in the regular expression to search any pattern at the end of each line of the text. ‘Script’ word is searched in the following example. Here, two lines contain the word, Script at the end of the line.
+
+$ echo -e "PHP Script\nJavaScript\nVisual Programming" | awk '/Script$/'
+
+
+
+
+
+Searching by omitting particular character set:
+_____________________________________________________
+
+‘^’ symbol indicates the starting of the text when it is used in front of any string pattern (‘/^…/’) or before any character set declared by ^[…]. If the ‘^’ symbol is used inside the third bracket, [^…]  then the defined character set inside the bracket will be omitted at the time of searching. The following command will search any word that is not starting with ‘F’ but ending with ‘ool’. Cool and bool will be printed according to the pattern and text data.
+
+$ printf "Fool\nCool\nDoll\nbool" | awk '/[^F]ool/'

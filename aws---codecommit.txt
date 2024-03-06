@@ -1,0 +1,35 @@
+aws---codecommit 
+
+  PR--PULL REQUESTS
+CI
+SNS
+CLOUDWATCH 
+
+LETS CREATE DEVELOPMENT ENVIRONMENT
+STS-IDE
+create the project
+open the git prospective
+ build the code
+  creat the local repo
+ add the code to stating to commit
+ after couple of commits, try to watch from   
+  java and git prospective about commits
+  
+step2: create iam user, give admin policies
+  
+step3: login as iam user and work with codecommit
+
+
+cicduser@123.
+
+
+496885079616
+
+https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/samplespringrepo
+cicduser-at-496885079616
+XgXPfZdE+Xw+AfkxrYLHtRPoqqLRbUjLGppICA7/uM8=
+
+
+
+
+

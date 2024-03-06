@@ -1,0 +1,55 @@
+SOURCE CODE MANAGEMENT:
+________________________
+
+CONTINOUS DEVELOPMENT:
+______________________
+
+    >SOURCE CODE MANAGEMENT 
+          >GIT,GITHUB,CODE COMMIT,GITLAB
+         APPLICATION
+       TECHINOLOGY
+         CODE
+        CODE STRUCTURE
+         PLACE --REPO
+
+         LOCAL REPO-GIT
+        REMOTE REPO---GITHUB
+
+VERSION CONTROLLING SYSTEM:
+_____________________________
+CVCS---SVN
+DVCS----------------GIT
+CHECK-IN
+CHECKOUT
+
+
+    >BUILD AUTOMATION
+    >RELEASE
+   
+WHAT IS GIT:
+_________________
+
+is a tool used to keep track of each change made
+  by the developer
+
+is a version controlling tool
+
+used to mange,edit,delete,copy,merge and migrate
+  the code repo from one to another
+
+is distributed version controlling system with
+   integration of github
+>build,version,patc
+h,hotfix
+
+githubactions
+
+
+.git
+refhat/centos/AL: sudo yum install -y git
+ubuntu: sudo apt install git
+
+
+git --version
+
+

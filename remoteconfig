@@ -1,0 +1,3 @@
+Name=T22
+Db=MysqlServer
+Caching=Redis

@@ -1,0 +1,140 @@
+submited
+
+ready 
+wait
+running
+terminated
+sleep
+
+types of process:
+______________________
+
+orphan process
+zombie process
+daemon process
+
+kill -l--- to view the signals
+kill pid 
+kill -9 pid
+
+to kill the process based on name:
+____________________________________
+pkill processname
+
+kill command will the process based on process id
+where as pkill kills the process based on proceename
+bash: 
+    is a command used to create a shell
+    when a new shell is created ,linux assigns a unique pid .
+
+to display the process id of the current shell:
+_______________________________________________
+
+   echo $$
+
+killall :
+___________
+
+  kills all the proecess based on processname
+
+   killall -u ec2-user
+   killall -9 
+
+ps
+pstree
+kill
+killall
+pkill
+pidof
+top
+bash
+
+pmap: is a commamnd  is used to report memory info about the process
+   pmap pid
+pidof processname
+
+ pmap 2344
+
+
+
+backup-script
+attend call
+view aws servie
+How to run forreground and background process:
+________________________________________________
+command or script &
+
+
+fg
+bg
+
+
+
+to  move scripts or prograams or commands to back ground:
+________________________________________________________
+
+sleep 10000&
+sleep 20000&
+sleep 300000&
+
+to view the background processes:
+___________________________________
+jobs
+to view the background process with id:
+__________________________________________
+
+jobs -l
+
+to move the process from backgground to froreground:
+______________________________________________________
+
+ jobs -l
+
+fg jobid
+
+to stop  foreground running job:
+______________________________________
+ ctrl+z
+
+to kill the job :
+____________________
+ctrl+c
+
+to start the job from the background which is already in stopped
+state:
+_______________________________________________________________
+
+ bg jobid
+
+to kill the jobs based on jobid:
+____________________________________
+
+ kill %jobid
+ kill %1
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
