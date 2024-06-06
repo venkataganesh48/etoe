@@ -3,7 +3,7 @@ pipeline
     agent any
     tools
     {
-        maven 'M2_HOME'
+        maven 'maven'
     }
      stages
      {
@@ -11,7 +11,7 @@ pipeline
           {
               steps
               {
-                  git 'https://github.com/SriDevops-T/EcommWeb.git'
+                  git 'https://github.com/spring-projects/spring-petclinic'
                   echo "repo downloaded successfully"
               }
           }
