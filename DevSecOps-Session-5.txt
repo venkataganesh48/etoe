@@ -1,0 +1,70 @@
+
+    os native tools: shell scripting/python/ansible/docker/k8s/nagios/git
+
+jjj
+ what is the linux:
+     os
+is a interace between user and h/w
+
+user--------------commands-english -----------------shell -------------------------os-linux-clang ---------systemscall-c-----------------------------h/w-01
+
+user
+what is the shell 
+shell is a interprtor
+used to interpret the command and hand over to the kernel
+is interface btween user and kernel
+bash--bourne again shell
+shelll scripting==bash scripting
+
+what is the kernel
+
+is process of sharing the resources of the server lke cpu,memory,disk,network and other services to  more than one user at atime
+is interface between shell and h/w
+
+ what are the features of kernal
+
+file system management
+text processing utilities---awk/sed
+disk and volume management 
+memory management
+process management 
+job automation&scheduling 
+service management 
+log management +elk 
+user and group management
+security/selinux
+system monitoring 
+database management : RDS
+BACKup 
+webserver/app server management : httpd/nginx/tomcat
+package-management : yum ,apt,rpm
+deployment automation: 
+shell scripting
+wha are the various modules need to learn as a devops engineer
+
+loginas root user
+iam
+CHOOSE YOUR REGION---AZ,HA
+LAUNCH THE VIRTUAL SERVER-LINUX--
+
+linux flavours:
+*******************
+redhat
+centos
+ubuntu
+debain
+amazonliux
+
+
+
+
+
+
+
+
+
+
+
+
+
+
