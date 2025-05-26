@@ -29,6 +29,9 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: deploy ecomm to tomcat
-      run: curl -v -u admin:admin -T /home/runner/work/etoe/etoe/target/Ecomm.war  'http://13.203.202.3:8080/manager/text/deploy?path=/Ecomm.war'
+      env:
+        TOMCAT_USER: ${{secrets.TOMCAT_USERNAME}}
+        TOMCAT_PWD:  ${{secrets.TOMCAT_PWD}}
+      run: curl -v -u $TOMCAT_USER:$TOMCAT_PWD -T /home/runner/work/etoe/etoe/target/Ecomm.war  'http://13.203.202.3:8080/manager/text/deploy?path=/Ecomm.war'
 
    
