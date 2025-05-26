@@ -1,7 +1,7 @@
 
     os native tools: shell scripting/python/ansible/docker/k8s/nagios/git
 
-
+jjj
  what is the linux:
      os
 is a interace between user and h/w
