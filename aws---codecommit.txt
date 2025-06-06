@@ -1,7 +1,6 @@
 aws---codecommit 
 
   PR--PULL REQUESTS
-CI
 SNS
 CLOUDWATCH 
 
