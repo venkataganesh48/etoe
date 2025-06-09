@@ -1,0 +1,27 @@
+
+
+
+
+1)jira
+2)git/github/githubaction/gitlab
+3)maven+gradle
+4)sonarqube[sast]
+5) junit+testng+api+mocktest+wiremock
+6)nexus/jfrog artifactory
+=================================================
+aws+terraform
+ansible
+docker
+helm
+k8s
+  grafana+promethesis
+========================================
+echo $HISTSIZE
+
+drwxr-xr-x. 2 ec2-user ec2-user 6 Apr 28 14:49 dir1
+cd .--current working directory
+cd ..
+cd ~ >user home directory
+cd ..  >it will take you one step back 
+cd ../../..
+what is the impact of cd -
