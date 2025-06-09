@@ -1,0 +1,219 @@
+shell-project:
+********************
+github: https://github.com/sresrinivas/etoe.git
+maven: pom.xml
+tomcat
+i need to build reusable libraries for
+
+            >cloning the code from repo
+            > start tomcat server 
+            > deploy
+            >undeploy
+            >stop server
+
+
+1)launch virtual server: amazon ec2 linux
+
+
+   sudo su -
+   cd /opt
+install java: yum install -y java
+check the java version:
+download maven too
+setup environment variables for java,maven
+
+  
+
+
+2)install java,maven,tomcat
+
+
+
+wget
+
+tar 
+
+
+
+
+deploy:
+*************
+source code ---push to repo--github--branch-master--java---pom.xml--mvn tomcat7:deploy
+  
+
+
+   select option in cloneRepo startTomcat appDeploy appUndeploy stopTomcat
+ do
+           case $option in
+           cloneRepo)
+                cloneRepo
+                 continue
+                   ;;
+           startTomcat)
+                          
+                   startTomcat
+                   continue
+                    ;;
+
+         appDeploy)
+                    appDeploy
+                    conitnue
+                      ;;
+         appUndeploy)
+                  appUndeploy
+                  continue
+                     ;;
+          stopTomcat)
+                  stopTomcat
+                 continue
+                  ;;
+          *)
+                echo please select proper option to move
+                     break
+                  ;;
+    esac
+
+
+
+#!/bin/bash
+
+function cloneRepo()
+{
+
+    read  -p "enter the directory for repo:" myrepo
+      mkdir $myrepo
+      cd myrepo
+      git clone https://github.com/sresrinivas/etoe.git
+
+}
+
+#cloneRepo
+
+
+function startTomcat()
+{
+
+#     cd /opttomcat
+
+     if netstat -lntp | grep 8080 > /dev/null ;then
+               echo tomcat server is already running
+       else
+                echo tomcat need to start
+                cd /opt/tomcat/bin
+                sh startup.sh
+                sleep 20
+     fi
+
+}
+
+#startTomcat
+
+function stopTomcat()
+{
+
+          if netstat -lntp | grep 8080 > /dev/null ;then
+               echo tomcat server is already running and need to stop
+                
+               cd /opt/tomcat/bin
+                sh shutdown.sh
+                sleep 10
+
+                echo *********tomcat server is down************
+
+        else
+                 echo already in stop state
+
+
+          fi
+
+  }
+
+#  stopTomcat
+
+function appDeploy()
+{
+       #  cloneRepo
+
+        # startTomcat
+                 
+
+        if [ -f /opt/myrepo/etoe/pom.xml ];then
+              
+             echo build file is exist
+
+            echo ***********start generating package*********
+            cd /opt/myrepo/etoe
+
+            mvn tomcat7:deploy
+    else
+           echo build file doesnot exist
+
+      fi 
+
+}
+
+#appDeploy
+
+
+function appUndeploy()
+{
+
+          if [ -f /opt/tomcat/webapps/Ecomm.war ];then
+                    echo war exist and try to undeploy
+
+                     cd /opt/myrepo/etoe
+                           if [ -e pom.xml ];then
+                                      echo build file exist and try to undeploy
+
+                                         mvn tomcat7:undeploy
+
+                                        sleep 20
+
+                         echo **********************undeploy successful************
+
+                 else
+                           echo build fi doesnot exist
+          fi
+  else
+            echo build is already undeploy
+            fi
+
+    }
+    #appUndeploy
+
+
+
+    select option in cloneRepo startTomcat appDeploy appUndeploy stopTomcat
+      do
+           case $option in
+           cloneRepo)
+                cloneRepo
+                 continue
+                   ;;
+           startTomcat)
+                          
+                   startTomcat
+                   continue
+                    ;;
+
+         appDeploy)
+                    appDeploy
+                    conitnue
+                      ;;
+         appUndeploy)
+                  appUndeploy
+                  continue
+                     ;;
+          stopTomcat)
+                  stopTomcat
+                 continue
+                  ;;
+          *)
+                echo please select proper option to move
+                     break
+                  ;;
+    esac
+done
+ 
+    
+
