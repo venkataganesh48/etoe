@@ -1,5 +1,5 @@
 FROM alpine/git as clone
-MAINTAINER stangella<stangella9@gmail.com>
+MAINTAINER stangella<sreatcloud@gmail.com>
 WORKDIR /app
 RUN git clone https://github.com/sresrinivas/etoe.git
 # stage-two
