@@ -1,0 +1,42 @@
+1) file uploads and downloads using restassured
+2)authenitication in restassured:OAuth2.0
+3) frameworks: cucumber+testng+erstassured+github+
+               maven+jen
+
+F
+     FileUpload:
+***********************
+  1) uploading  cnfig gile to test backup /restore --upload
+
+ 2) download artifacts to verify the correctness---downlods
+3)uploads logs for external analysi----upload
+
+apihttps://github.com/FreeCode911/AnoUpload
+==================================================
+
+
+
+
+
+
+3 to 6:
+*************
+
+fileupload/downloads
+oauth1.0
+
+from 4 to 6:
+*****************
+
+framework
+
+
+
+
+
+
+
+
+
+
+
