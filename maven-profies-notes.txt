@@ -1,0 +1,152 @@
+step1: Launch 4 servers--ec2-server-AL
+--region --4 servers
+
+2) CONNECT TO BUYILD SERVER
+     CONFIGURE JDK,MAVEN,GIT..
+NOTE: DONT INSTALL TOMCATSERVER IN BUILDSERVER
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.com.web</groupId>
+    <artifactId>webproject</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>webproject Maven Webapp</name>
+
+    <build>
+        <finalName>webproject</finalName>
+        <plugins>
+            <!-- Declare the tomcat7 plugin globally -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Dev Profile -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <tomcat.url>http://13.232.228.201:8080/manager/text</tomcat.url>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <configuration>
+                            <url>${tomcat.url}</url>
+                            <server>tomcat-dev</server>
+                            <path>/ecomm</path>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- QA Profile -->
+        <profile>
+            <id>qa</id>
+            <properties>
+                <tomcat.url>http://13.203.231.194:8080/manager/text</tomcat.url>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <configuration>
+                            <url>${tomcat.url}</url>
+                            <server>tomcat-qa</server>
+                            <path>/Ecomm</path>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Prod Profile -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <tomcat.url>http://13.233.136.24:8080/manager/text</tomcat.url>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <configuration>
+                            <url>${tomcat.url}</url>
+                            <server>tomcat-prod</server>
+                            <path>/hello</path>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+
+</project>
+
+
+
+
+> profile id
+> tomcatserver plug-in
+> configuration:
+            <url> of the target server
+            <path> where to deploy at tomcat
+            <server> this is key element that will identify the tomcat server credentials
+            of the speicifc profile for the environment
+
+all above sections are  required for every profile in pom.xml
+
+     
+
+
+<settings>
+ <servers>
+  <server>
+     <id>tomcat-dev</id>
+     <username>admin</username>
+      <password>admin</password>
+</server>
+
+<server>
+     <id>tomcat-qa</id>
+     <username>admin</username>
+      <password>admin</password>
+</server>
+<server>
+     <id>tomcat-prod</id>
+     <username>admin</username>
+      <password>admin</password>
+</server>
+</servers>
+</settings>
+   
+
+
+
+
+
+
+
+
+
+
