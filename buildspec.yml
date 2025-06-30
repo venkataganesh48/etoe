@@ -1,0 +1,43 @@
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - echo "--- Installing AWS CLI ---"
+      - |
+        if ! sudo dnf install -y awscli; then
+          echo "--- Fallback: Manual AWS CLI Install ---"
+          curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip -q awscliv2.zip
+          sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
+          rm -rf awscliv2.zip aws
+        fi
+      - aws --version
+      - echo "AWS CLI installed successfully"
+
+  pre_build:
+    commands:
+      - echo "--- Checking environment ---"
+      - ls -la
+      - mvn --version
+
+  build:
+    commands:
+      - echo "--- Building WAR file ---"
+      - mvn clean package
+
+  post_build:
+    commands:
+      - echo "--- Deploying WAR to Tomcat ---"
+      - curl -f -u "$TOMCAT_USERNAME:$TOMCAT_PASSWORD" -T target/Ecomm.war "http://3.110.107.201:8080/manager/text/deploy?path=/Ecomm&update=true"
+      - echo "--- Uploading WAR to S3 ---"
+      - aws s3 cp target/Ecomm.war "s3://chandu-lokesh/Ecomm.war"
+      - echo "✅ Deployment complete"
+
+artifacts:
+  files:
+    - target/Ecomm.war
+what are the that we need to change in this file
