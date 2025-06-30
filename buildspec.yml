@@ -27,14 +27,13 @@ phases:
     commands:
       - echo "--- Building WAR file ---"
       - mvn clean package
+      - ls -l target
 
   post_build:
     commands:
-      - echo "--- Deploying WAR to Tomcat ---"
-      - curl -f -u "$TOMCAT_USERNAME:$TOMCAT_PASSWORD" -T target/Ecomm.war "http://13.203.222.97:8080/manager/text/deploy?path=/Ecomm&update=true"
       - echo "--- Uploading WAR to S3 ---"
       - aws s3 cp target/Ecomm.war "s3://chandu-lokesh/Ecomm.war"
-      - echo "✅ Deployment complete"
+      - echo "✅ WAR uploaded to S3 successfully"
 
 artifacts:
   files:
