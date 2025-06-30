@@ -1,4 +1,3 @@
-
 version: 0.2
 
 phases:
@@ -32,7 +31,7 @@ phases:
   post_build:
     commands:
       - echo "--- Deploying WAR to Tomcat ---"
-      - curl -f -u "$TOMCAT_USERNAME:$TOMCAT_PASSWORD" -T target/Ecomm.war "http://3.110.107.201:8080/manager/text/deploy?path=/Ecomm&update=true"
+      - curl -f -u "$TOMCAT_USERNAME:$TOMCAT_PASSWORD" -T target/Ecomm.war "http://13.203.222.97:8080/manager/text/deploy?path=/Ecomm&update=true"
       - echo "--- Uploading WAR to S3 ---"
       - aws s3 cp target/Ecomm.war "s3://chandu-lokesh/Ecomm.war"
       - echo "✅ Deployment complete"
@@ -40,4 +39,3 @@ phases:
 artifacts:
   files:
     - target/Ecomm.war
-
