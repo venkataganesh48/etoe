@@ -32,9 +32,9 @@ phases:
   post_build:
     commands:
       - echo "--- Uploading WAR to S3 ---"
-      - aws s3 cp target/Ecomm.war "s3://chandu-lokesh/Ecomm.war"
+      - aws s3 cp target/Ecomm1.war "s3://chandu-lokesh/Ecomm1.war"
       - echo "✅ WAR uploaded to S3 successfully"
 
 artifacts:
   files:
-    - target/Ecomm.war
+    - target/Ecomm1.war
