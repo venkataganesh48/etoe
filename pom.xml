@@ -39,7 +39,7 @@
 					<server>apache-tomcat</server> 
 					<username>admin</username>
 					<password>admin</password>
-					<path>/Ecomm</path> 
+					<path>/Ecomm1</path> 
 				</configuration> 
 			</plugin>
 		</plugins>
