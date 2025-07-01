@@ -41,7 +41,7 @@ phases:
       - chmod 400 ec2-key.pem
 
       - echo "--- Deploying WAR to EC2 Tomcat ---"
-      - scp -o StrictHostKeyChecking=no -i ec2-key.pem target/Ecomm1.war ${EC2_USER}@${EC2_HOST}:/opt/tomcat9/webapps/
+      - scp -o StrictHostKeyChecking=no -i ec2-key.pem target/Ecomm1.war ${EC2_USER}@${EC2_HOST}:/opt/apache-tomcat-10.1.42/webapps/
 
       - echo "✅ Deployment to EC2 completed."
 
