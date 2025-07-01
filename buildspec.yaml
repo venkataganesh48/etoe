@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    ARTIFACT_BUCKET: "restapps-bucket"  # Replace with your S3 bucket
+    ARTIFACT_BUCKET: "ecomm-bucketforproject"  # Replace with your S3 bucket
     ARTIFACT_PATH: "build-artifacts/"       # Optional: S3 key prefix
 
 phases:
