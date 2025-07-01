@@ -37,7 +37,7 @@ phases:
       - echo "✅ WAR uploaded to S3 successfully"
 
       - echo "--- Downloading EC2 PEM key from secure S3 bucket ---"
-      - aws s3 cp s3://bucket-for-pem-file-new/my-ec2-key.pem ec2-key.pem
+      - aws s3 cp s3://bucket-for-pem-file-new/tomcat-server.pem ec2-key.pem
       - chmod 400 ec2-key.pem
 
       - echo "--- Deploying WAR to EC2 Tomcat ---"
