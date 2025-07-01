@@ -14,8 +14,9 @@ phases:
           sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
           rm -rf awscliv2.zip aws
         fi
+      - sudo yum install -y unzip openssh
       - aws --version
-      - echo "AWS CLI installed successfully"
+      - echo "AWS CLI and dependencies installed successfully"
 
   pre_build:
     commands:
@@ -32,8 +33,17 @@ phases:
   post_build:
     commands:
       - echo "--- Uploading WAR to S3 ---"
-      - aws s3 cp target/Ecomm1.war "s3://new-s3-vijay/Ecomm1.war"
+      - aws s3 cp target/Ecomm1.war "s3://bucket-for-war-file/Ecomm1.war"
       - echo "✅ WAR uploaded to S3 successfully"
+
+      - echo "--- Downloading EC2 PEM key from secure S3 bucket ---"
+      - aws s3 cp s3://bucket-for-pem-file-new/my-ec2-key.pem ec2-key.pem
+      - chmod 400 ec2-key.pem
+
+      - echo "--- Deploying WAR to EC2 Tomcat ---"
+      - scp -o StrictHostKeyChecking=no -i ec2-key.pem target/Ecomm1.war ${EC2_USER}@${EC2_HOST}:/opt/tomcat9/webapps/
+
+      - echo "✅ Deployment to EC2 completed."
 
 artifacts:
   files:
