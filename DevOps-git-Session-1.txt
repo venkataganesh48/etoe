@@ -1,0 +1,191 @@
+
+what is ci:
+
+   1) pull based : execute automated build at scheduled time: 
+  2)push : execute the automated whenever changes are happened at repository: github
+
+how to perform CI:
+*************************
+
+
+jenkins/gitlab/githubaction/azuredevops/bamboo/codepipeline/serverless/gitops
+what are the diff stages in CI:
+****************************************
+
+ source code management : git/github/githubaction/gitlab/codecommit/azurerepo-azuredevops
+ buildautomation
+       compile
+      test the code
+      code coverage
+     sast
+    packagement
+   run the integration  tests
+  alerts and notification
+
+
+
+what is source code management:
+******************************************
+
+vcs-version control system:
+
+   1) cvs: svn
+   2)dvcs: git
+to track the changes
+share the code
+mege confilicts
+automated file system
+
+what is repo:
+********************
+is folder 
+.git
+ types of repos:
+********************
+
+   1) local repo: git     2) remote repo: github 
+git is tool
+
+github is a repo used for hosting the services
+
+what is vesion:
+*********************
+enhancement of the build
+
+
+what is build: is  a set of executable files generated after source code compilation
+
+
+git flow:
+****************
+1) what is working area/directory  or tree----------------untracked
+2) staging area-------------------------------------------------tracked
+
+3)commit area/local repostiory------------------------------------commited
+
+
+
+git init myrepo
+  cd repo
+  add some files using ur linux commands
+
+git stattus
+  o/p untracked
+
+try to move file from working area to staging area[tracked]:
+***************************************************************
+
+ git add filename
+ git add .
+
+
+check the status of the file:
+*********************************
+
+
+git status
+
+
+to move back from tracked to untracked:
+********************************************
+git rm --cached filename
+
+again start from untracked to tracked : git add 
+
+to check files are commited or not:
+**************************************
+
+git commit -m"this is my first commit"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+what are the tools required to implement
