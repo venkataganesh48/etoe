@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   variables:
-    ARTIFACT_BUCKET: "ecommbucketproject"  # Replace with your S3 bucket
-    ARTIFACT_PATH: "build-artifacts/"       # Optional: S3 key prefix
+    ARTIFACT_BUCKET: "cb-ecomapp"  # Replace with your S3 bucket
+    ARTIFACT_PATH: "eapp/"       # Optional: S3 key prefix
 
 phases:
   install:
