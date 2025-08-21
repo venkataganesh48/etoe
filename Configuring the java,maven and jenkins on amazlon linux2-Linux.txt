@@ -1,0 +1,484 @@
+>login to aws management console
+>launch amazonlinux
+>login as root
+     $sudo su -
+     $yum remove java-1.7.0*
+     now check the version, java removed or not.
+     java -version
+>now install java 1.8:
+________________________
+
+     $yum install java-1.8*
+
+
+Note:
+after java installation , we need to set up the homepath of our java for that we need to findvout where is jre exists
+
+$find /usr/lib/jvm/java-1.8* | head -n 3
+
+o/p:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.272.b10-1.amzn2.0.1.x86_64
+
+note:we need to set the path the jre into homeuser , for that
+$cd ~
+$vi ~/.bash_profile
+
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.50.amzn1.x86_64
+
+PATH=$PATH:$HOME/bin:$JAVA_HOME
+$echo $JAVA_HOME
+o/p:/usr/lib/jvm/jre--
+
+note:if o/p is not shown,les try to LOGOFF AND LOGIN TO GET IT EFFECT
+
+$exit
+$sudo su -
+
+>now to get the full path  again fire the following cmd
+
+$echo $JAVA_HOME
+
+NOW LETS INSTALL JENKINS,IF U TRY TO INSTALL JENKINS USING THE 
+FOLLOWING COMMAND
+
+$yum install jenkins
+
+o/p:Loaded plugins: priorities, update-motd, upgrade-helper
+amzn-main                                                | 2.1 kB     00:00
+amzn-updates                                             | 2.5 kB     00:00
+No package jenkins available.
+Error: Nothing to do
+
+reason:it doesnot have repository to pull the code, for that
+go to google search as " download jenkins", take the frist link
+https://www.jenkins.io/download/ , now click on Redhat/Fedora/centos
+then it navigates to "https://pkg.jenkins.io/redhat-stable/"
+
+To use this repository, run the following command:
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+now, install the jenkins
+
+$yum -y install jenkins
+
+now check the jenkins server status
+
+$service jenkins status
+
+o/p: its in stoped state
+
+$service jenkins start
+o/p:its running
+
+$service jenkins status
+
+now to access the jenkins ui from the browser, goto ec2 , copy the
+public ip of the ec2 and  map the port 8080 in the browser
+
+
+3.17.167.38:8080
+
+now it open the jenkins and ask the passwd to unlock the jenkins
+
+$cat /var/lib/jenkins/secrets/initialAdminPassword
+
+now skip the installation plug-in and continue and click start jenkins
+
+now it open the jenkins ui and lets us change the password for the admin, for that click on
+admin--click on configure-password an chnage the password[admin@123]
+-------------------------------------------
+jenkins user credentials name:admin and passwd:admin@123
+-------------------------------------------
+save and apply now it throw an error , to login safely again  enter
+public ip:8080 in the browser, itasks the user name and pwd and clickom
+
+now setup the java path in the jenkins:
+__________________________________________
+
+click on "manage jenkins"--click on "global tool configuration"--click on add jdk--
+enter jdk name=JAVA_HOME AND
+TO GET THE JAVA_HOME PATH , go to console, $echo $JAVA_HOME 
+ JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.50.amzn1.x86_64
+APPLY and save
+
+now create and simple job and run the shell command in the jenkins:
+__________________________________________________________________
+
+click on create item, freestyle job---choose shellcommand frm the
+add build  and enter the followinf commd echo "welcome to devops project"
+apply--save00build now--see the result of the build status
+
+configure git setup on linux:
+____________________________________
+
+to change the hostname of the instance
+$hostname jenkins
+to vew the effet, re login
+$sudo su -
+
+install git :
+_________________
+yum install git -y
+
+check the git version :
+___________________________
+$ git --version
+now configure git plug-in jenkins:
+_____________________________________
+manage jnekins--mange plugins--available-search as"github"--select gitbub--click on ddownload
+with outstat"
+configure git plugin in the global tool configuration:
+___________________________________________________
+
+managejenkins--global tool configuration --git--take it default or github--apply-save and run the job by configurin the
+  github path for pulling code from thre. while pullling the code
+from the hub, if it thrown as error, then need to set up the git path
+ in the "global tool configuraution" jenkins.
+path:/usr/local/git/bin/git
+=====================================================
+
+
+Git
+ 	Git installations	
+Git
+ 	Name	:github
+ 	Path to Git executable: git
+Help for feature: Path to Git executable
+There's no such executable git in PATH: /sbin, /usr/sbin, /bin, /usr/bin.
+Install automatica
+=================================================
+note: it work as it without entering the path of git
+
+configuring the maven setup on amazon linux:
+__________________________________
+https://maven.apache.org/download.cgi
+copy the binarytargzachive  link"http://apachemirror.wuchna.com/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz"
+go to console
+$cd ~ if u are not in /root
+$ cd /opt
+$ ls -ltr
+$ wget http://apachemirror.wuchna.com/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+$ls
+untar it
+$ tar -xvzf apache-maven-3.6.3-bin.tar.gz
+$ ls
+for better naming convention change  apache-maven-3.6.3 to maven
+$mv apache-maven-3.6.3 maven
+$cd maven
+$pwd
+/opt/maven
+$ls
+
+now setup the enviornment variable path for the maven variables like
+ M2_HOME and M2
+
+Setup M2_HOME and M2 paths in .bash_profile of the user and add these to the path variable
+______________________________________________________________
+vi ~/.bash_profile
+==========================================================
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.50.amzn1.x86_64
+M2_HOME=/opt/maven
+M2=/opt/maven/bin
+PATH=$PATH:$HOME/bin:$JAVA_HOME:$M2:$M2_HOME
+
+export PATH
+~
+===========================================
+echo $M2
+$exit
+$sudo su -
+$echo $M2
+$echo $M2_HOME
+$mvn --version
+oops...-bash: mvn: command not found
+
+something we missed inthe .bash_profile, please go and modify PATH
+and add the m2 and m2_home in the 
+= 
+vi ~/.bash_profile
+
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.50.amzn1.x86_64
+M2_HOME=/opt/maven
+M2=/opt/maven/bin
+PATH=$PATH:$HOME/bin:$JAVA_HOME:$M2:$M2_HOME
+=============================
+again exit
+$exit
+$sudo su -
+$mvn --version
+
+
+NOW GO TO THE JENKINS AND INSTALL MAVEN PLUG-INS:
+________________________________________________
+
+GO TO MANAGE JENKINS--MANAGE PLUGINS--AVAILABLE-selct maven and
+  choose following plug-ins
+
+etup maven on Jenkins console
+Install maven plugin without restart
+Manage Jenkins > Jenkins Plugins > available > Maven Invoker
+Manage Jenkins > Jenkins Plugins > available > Maven Integration
+
+NOW SETUP THE MAVEN PATH IN JENKINS GLOBAL TOOL CONFIGURATIONS:
+_________________________________________________________________
+
+
+manage jenkins--configure global tool configuration--
+Maven
+ 	Maven installations	
+Add Maven
+MavenName=M2_HOME
+MAVEN_HOME=/opt/maven
+Install automatically--apply-save
+
+
+now create an maven job and run from the jenkins for generating war
+
+=========================================================
+tomcat server setup
+______________________
+
+>launch new instance for tomcatserver-tag-name=tomcatserver
+  use same security group which we used for jenkins server instance
+  option:selecting existing group and use existing keypair and acknowledge 
+  copy the public ip and open new session from the mobaxterm-paste
+  the public ip,enter ec2-user and browse the same .pem and apply -ok
+> login to ec-instance
+>sudo su -
+>rename the hostname
+  $hostname tomcat
+$sudo su -
+
+>google download apache tomcat
+https://tomcat.apache.org/download-80.cgi
+select tomcat8 at tht right side pane
+version:8.5.43 or 8.5.54
+$cd /opt
+
+$wget https://downloads.apache.org/tomcat/tomcat-8/v8.5.54/bin/apache-tomcat-8.5.54.tar.gz.asc
+https://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.54/bin/apache-tomcat-8.5.54.tar.gz
+================
+https://archive.apache.org/dist/tomcat/tomcat-8/
+===================================
+$ls
+$tar -xvzf apche-tomcat-8.5.43.tar.gz
+$mv apche-tomcat-8.5.43.tar.gz tomcat
+$ cd tomcat
+$ ls
+$cd bin
+$ ./startup.sh
+now copy the public ip of the tomcat server from aws managment console
+and go to the browser and paste the ipadress:8080
+and view tomcatserver webui 
+>click on manageapp--it wont open ,y bcoz need to configure user
+   credentials
+now we are in the in directory
+root@tomcat bin] find / -name context.xml
+take the second list
+/opt/tomcat/webapp$/manager/MET-INF/context.xml
+
+$vi /opt/tomcat/webapp$/manager/MET-INF/context.xml
+
+edit
+<--some line here
+
+$vivi /opt/tomcat/webapp$/host-manager/MET-INF/context.xml
+
+commet some lines in above files
+
+shutdown the tomcat
+$./shutdown.sh
+
+start the tomat
+$ ./startup.sh
+
+this time its not throwing any error but its tme to enter user
+deatils
+
+$pwd
+/opt/maven/bin
+$ cd ..
+$pwd
+/opt/maven
+$ls
+$ cd conf
+$vi tomcat-users.xml
+<role rolename="manager-gui"/>
+ <role rolename="manager-script"/>
+ <role rolename="manager-jmx"/>
+ <role rolename="manager-status"/>
+ <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+ 
+
+$ cd ../bin
+$ ls
+$./shutdown.sh
+
+$./startup.sh
+
+
+https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.93/bin/apache-tomcat-7.0.93.tar.gz
+
+
+
+
+>nex t donwload deploy to container plug-in
+>postbuild actions lo: **/*.war
+=====================================================================================================================================================================================
+
+
+function cloneRepo()
+{
+
+        read -p "enter the project to clone:" myrepo
+        mkdir $myrepo
+        cd $myrepo
+        read -p "enter the project url to clone:" url
+        git clone $url
+
+}
+
+#cloneRepo
+
+function startTomcat()
+{
+    if [ netstat -lntp | grep 8080 ];then
+
+       echo tomcat server is already in state
+
+else
+       echo tomcat server is not running and try to start
+
+     cd /root/cipipeline/tomcat/bin
+     sh startup.sh
+    fi
+
+}
+
+#startTomcat
+
+
+function stopTomcat()
+{
+  netstat -lntp | grep 8080
+   echo $?
+
+   if [ $? -eq 0 ];then
+           echo tomcat server is runnning
+
+
+            cd /root/cipipeline/tomcat/bin
+     sh shutdown.sh
+
+     echo tomcatserver is shutting down.....
+else
+          echo its already in stopped state
+   fi
+}
+#stopTomcat
+function appDeploy()
+{
+
+    if [ -f /root/cipipeline/myrepo/etoe/pom.xml ];then
+
+            echo build file is exist
+
+            cd /root/cipipeline/myrepo/etoe
+
+             mvn tomcat7:deploy
+
+             echo application  is deploying successfully
+             echo *******************done*****************
+     else
+
+             echo build file is not exist
+    fi
+
+
+
+}
+
+#appDeploy
+function appUndeploy()
+{
+
+       if [ -f /root/cipipeline/tomcat/webapps/*.war ];then
+
+               echo build is  already deployed
+
+                cd /root/cipipeline/myrepo/etoe
+
+                mvn tomcat7:undeploy
+
+                echo app is undeploying
+
+                echo application is undeployed successfully
+        else
+
+                echo no build is exist  and try to deploy if u want
+       fi
+}
+
+#appUndeploy
+
+function appRedeploy()
+{
+
+     if [ ! -f  /root/cipipeline/tomcat/webapps/*.war ];then
+              echo build file is not exist  and try to redeploy
+
+                cd /root/cipipeline/myrepo/etoe
+
+                mvn tomcat7:redeploy
+
+                echo app is redeploying
+
+                echo *************redpeloy done **********
+
+        else
+                echo already deployed and no need to redeploy
+     fi
+}
+#appRedeploy
+
+
+
+select func in cloneRepo startTomcat stopTomcat appDeploy appUndeploy appRedeploy
+do
+          case $func in
+          cloneRepo)
+                    cloneRepo
+                     continue
+                      ;;
+         startTomcat)
+                     startTomcat
+                     continue
+                      ;;
+         stopTomcat)
+                  stopTomcat
+                   continue
+                    ;;
+          appDeploy)
+                   appDeploy
+                   continue
+                     ;;
+          appUndeploy)
+                     appUndeploy
+                      continue
+                        ;;
+         appRedeploy)
+                      appRedeploy
+                      continue
+                       ;;
+        *)
+                 echo please select valid case to perform pipeline
+                    break
+                     ;;
+
+                   esac
+           done
+
+
+
+
