@@ -1,0 +1,253 @@
+
+
+
+
+
+
+*create 3 ec2-servers
+*connect to controller machine---sudo yum update -y
+and continue to rest of the 2 servers
+*on ansible-server
+
+ sudo su -
+
+useradd ansadmin
+passwd ansadmin
+pwd: hello
+
+vi /etc/sudoers
+
+under root
+
+ansadmin ALL=(ALL) NOPASSWD: ALL
+
+copy andpasste under wheel group
+
+
+
+ansadmin ALL=(ALL) NOPASSWD: ALL
+
+
+
+vi /etc/ssh/sshd_config
+
+permitRootLogin prohibit-password
+
+PasswordAuthentication yes
+systemctl restart sshd
+
+* repeat same steps on 2 remote server
+
+ * go back to  controller machine and now we are in root
+
+* switch to ansadmin
+  su - ansadmin
+
+sudo yum update -y
+
+* now generate the keys
+    ssh-keygen
+   cd .ssh
+ ssh-copy-id ansadmin@targetpublicip of server1
+
+
+*check the ssh connection for remote server 1
+ ssh ansadmin*publicipserver1
+
+* now copy the id to the remtoeserver2  too
+
+ssh-copy-id ansadmin@targetpublicip of server2
+
+
+*check the ssh connection for remote server 2
+ ssh ansadmin*publicipserver2
+
+
+* exit from the server1 ,server 2 after testing the ssh connection
+
+at .ssh sudo yum install -y ansible
+
+ansible --version
+
+heck the config file ----> /etc/ansible/ansible.cfg
+
+
+
+[defaults]
+interpreter_python = /usr/bin/python3.9
+inventory = /etc/ansible/hosts
+remote_user = ansadmin
+host_key_checking = False
+retry_files_enabled = False
+timeout = 30
+
+cgeck the host file------> /etc/ansible/hosts
+sudo touch /etc/ansible/hosts
+sudo chmod 644 /etc/ansible/hosts
+[web]
+35.154.207.129
+ipaddess of the remote server1
+sudo chown -R ansadmin:ansadmin *
+ansible all -I hosts -m copy -a "src=me dest=/home/ansadmin"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sudo yum update -y
+    2  ssh-keygen
+    3  clear
+    4  ls - la
+    5  ls -la
+    6  cd .ssh
+    7  ls -la
+    8  ssh-copy-id ansadmin@35.154.207.129
+    9  ssh ansadmin@35.154.207.129
+   10  clear
+   11  sudo yum install -y ansible
+   12  ansible --version
+   13  sudo cat /etc/os-release
+   14  sudo mkdir -p /etc/ansible
+   15  sudo curl -o /etc/ansible/ansible.cfg https://raw.githubusercontent.com/ansible/ansible/stable-2.15/examples/ansible.cfg
+   16  cd /etc/ansible/
+   17  ls
+   18  cat ansible.cfg
+   19  ls
+   20  clear
+   21  ls
+   22  cat ansible.cfg
+   23  ls
+   24  rm -rf ansible.cfg
+   25  sudo rm -rf ansible.cfg
+   26  cd
+   27  pwd
+   28  cd .ssh
+   29  ls
+   30  sudo yum install -y git
+   31  clear
+   32  git clone -b stable-2.15 https://github.com/ansible/ansible.git
+   33  ls
+   34  cd ansible/
+   35  ls
+   36  cat setup.
+   37  cat setup.cfg
+   38  clear
+   39  ls
+   40  cd ..
+   41  ls
+   42  cd ansible/
+   43  ls
+   44  cd lib/
+   45  ls
+   46  cd ansible/
+   47  ls
+   48  cd ..
+   49  ls
+   50  cd ..
+   51  clear
+   52  ls
+   53  cd packaging/
+   54  ls
+   55  cd ..
+   56  ls
+   57  cd bin/
+   58  ls
+   59  ls -la
+   60  clear
+   61  ls
+   62  cat ansible-config
+   63  clear
+   64  ls
+   65  cd ..
+   66  ls
+   67  cd ..
+   68  ls
+   69  cd /etc/ansible/
+   70  ls
+   71  vi ansible.cfg
+   72  sudo vi ansible.cfg
+   73  sudo touch /etc/ansible/hosts
+   74  sudo chmod 644 /etc/ansible/hosts
+   75  ls
+   76  pwd
+   77  cd /etc/
+   78  ls
+   79  clear
+   80  cd /ansible
+   81  pwd
+   82  cd ..
+   83  cd
+   84  cd .ssh
+   85  ls
+   86  cd /etc/ansible
+   87  ls
+   88  cat ansible.cfg
+   89  vi hosts
+   90  sudo vi hosts
+   91  cd ..sh
+   92  cd .ssh
+   93  clear
+   94  cd ~
+   95  cd .ssh
+   96  ansible --version
+   97  cd /etc/ansible/
+   98  ls -la
+   99  sudo chown -R ansadmin:ansadmin *
+  100  ls -la
+  101  ansible all -m ping
+  102  cd .ssh
+  103  cd ~
+  104  cd .ssh
+  105  clear
+  106  ls
+  107  rm -rf ansible/
+  108  ansible all -m ping
+  109  ssh ansadmin@35.154.207.129
+  110  cd /etc/ansible/
+  111  ls
+  112  cat hosts
+  113  ping 35.154.207.129
+  114  ls
+  115  vi hosts
+  116  ansible all -m ping
+  117  ls
+  118  vi ansible.cfg
+  119  ansible all -m ping
+  120  ping 35.154.207.129
+  121  ansible all -m ping
+  122  vi ansible.cfg
+  123  ansible all -m ping
+  124  vi ansible.cfg
+  125  ansible all -m ping
+  126  clear
+  127  ansible all -m ping
+  128  vi ansible.cfg
+  129  ansible all -m ping
+  130  ansible --version
+  131  vi ansible.cfg
+  132  ansible --version
+  133  ansible all -m ping
+  134  vi ansible.cfg
+  135  ansible all -m ping
+  136  vi ansible.cfg
+  137  clear
+  138  history
