@@ -1,0 +1,104 @@
+4/21/2025
+what is cloud computing
+virtualization
+remote storage 
+is a kind computing technique where resources are
+shared across the global in a pay-as a go model
+what is a web Service in the cloud:
+service run over the web-internet
+
+
+what are the diff types services:
+IAAS:SERVERS,STORAGE,NETWORK,MEMORY : IAC--TERRAFORM 
+EC2,EBS,EFS,S3,VPC
+
+PAAS:
+SAAS
+CAAS: ECS,ECR,EKS
+FAAS:LAMBDA
+AWS: 
+what is public,private and hybrid cloud
+
+PUBLIC : AWS/AZURE/GCP
+PRIVATE: YOUR OWN DATA CENTER 
+HYBRID: PUBLIC +PRIVATE
+
+what is global infrastructure in aws.
+   
+REGION: mumbai--CODE FROM AWS 
+          az:datacenters: HA
+
+iaas
+
+
+whoami in the cloud?
+sysops+admin+cicd
+aws: developer tools for cicd
+azure: azuredevops 
+  
+04/22/2025:
+******************
+
+why we need server-side os:
+
+1) laptop--vmware ---centos/ubuntu/rhel
+2) use cloud -aws/azure 
+
+
+
+
+will connect to aws and try to create vm 
+1) linux 2)shell scripting 3)python
+SRE
+2) cicd tool
+3) aws +azure 
+
+TYPES OF USERS IN THE CLOUD: ROOT USER,IAM USER 
+
+DEVOPS/SYSOPS/CLOUD/SECURITY/SRE/-----AWS
+
+   1) THRU AWS MANAGEMENT CONSOLE
+   2)thru aws cli
+     3) thru cdk
+     4) thru sdk
+    5) thru templates--terraform
+
+
+what is  ec2:
+*********************
+is a webservice used to create virtual server
+image and instance
+
+steps required to launch ec2 instance:
+********************************************
+1)name and tag
+2) choose AMI
+3) CHOOSE Instance type--t2.micro--instancetypes
+4) create key-pair---  .pem[secret key,private key]
+5) choose network settings[vpc]
+6) configure storage
+7) review and launch
+8) view instances
+9) go to ec2 console window---connect---sshclient---copy command
+ssh -i "linuxserver.pem" ec2-user@ec2-52-66-201-251.ap-south-1.compute.amazonaws.com
+10) hit the enter
+11) yes
+12) it will take to the remote server called-redhat.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
