@@ -29,4 +29,6 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: deploy eapp to tomcat server
+      run:  curl -v -u admin:admin -T /home/runner/work/etoe/etoe/target/Ecomm.war 'http://54.179.93.174:8080/manager/text/deploy?path=/Ecomm.war'
 
