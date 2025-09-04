@@ -1,0 +1,533 @@
+
+on-premise:
+ HA:
+LOAD
+SCALABILITY
+ONDEMAND
+what is cloud
+what is cloud computing---DOMAIN:BFSI
+what is iaas:
+    COMPUTE OS.NETWORKS,STORAGE,DB..
+EC2,FARGATE,LAMBDA,..
+CNPA
+SERVEROS
+what is paas
+what is saas
+what are the diff types cloud models
+   >public
+   >private
+  >hybrid
+> introduction to aws --- ORGANIZATION---ACCOUNT 
+> creating aws account-
+
+https://signin.aws.amazon.com/signin?client_id=arn%3Aaws%3Asignin%3A%3A%3Aconsole%2Fcanvas&redirect_uri=https%3A%2F%2Fconsole.aws.amazon.com%2Fconsole%2Fhome%3FhashArgs%3D%2523%26isauthcode%3Dtrue%26nc2%3Dh_ct%26src%3Dheader-signin%26state%3DhashArgsFromTB_eu-north-1_3c4411f4beca01e1&page=resolve&code_challenge=FQkThGwxaS7UXS2ltoGb6UavDsSLvObebI_KfS1d40o&code_challenge_method=SHA-256&backwards_compatible=true
+
+
+  How to perform activities /actions in the aws:
+****************************************************
+  1) thru management console-gui
+ 2) thru aws-cli
+  3)thru cdk
+4)thru sdk
+5) template-CFT/TF
+
+04/10/2025:
+**************
+
+   worldwide network of 
+               >regions:mumbai--ap-south-1
+                >AZ---1a,1b,1c-HA
+               >LocalZones
+               >edge locations:CDN--CLOUD FRONT 
+               >wavelengthzones
+               >aws outposts
+             >local zone
+
+LOGIN: ROOT USER
+
+what is os
+ what is shell 
+what is th use command
+ what is cli
+ why we need os
+ server-side-os
+ what is vm
+    how to create vm in the cloud using compute service--EC2
+   ec2 is compute service provided by aws 
+   used to launch virtual server at the speific data center as az in regioin
+steps: login as root user--services--compute -ec2--name and tag- choose ami--redhat-instance type-
+-create the key-pair(.pem)--choose network ---choose storage--launch-view instance-go to
+instance window--select the instance name--connect--ssh-client--copy ssh
+
+ssh -i "MYOS.pem" ec2-user@publicdns-go the download directory where our .pem file saved-
+cmd-paste the command at command promprt--it will ask prompt--enter "yes"---> now os is
+launched and start to practice the commands.
+============================================================
+11/04/2025
+  what is ec2:
+   is a compute service
+  used to launch virtual server in the cloud
+ 
+linux:--server-side os-
+
+steps:
+************
+                   name and tag
+                 choose AMI(AMAZON MACHINE IMAGE)
+                 choose instance type-t2.micro
+                 create key-pair [.pem]
+               choose networking environement[configure security groups]--vpc
+              add storage--ebs/efs/s3
+             review and launch
+            view
+            connect to vm
+ssh -i pemfile user@ipadress or dns 
+
+
+iam
+
+what is CLI:
+*******************
+  1)gui[not required]
+  2)cli
+commands: simple,complex,compound 
+types  of prompts: normal user: $
+root user/super user: #
+
+4/12/2025:
+***********
+user----commands-cli--terminal---prompt-$---shell---bash-bourne again shell---kernel--os---h/w
+
+pwd
+useradd
+passwd
+sudo 
+su -
+whatis
+which
+whereis
+
+=========================================================
+
+04/15/2025:
+*******************
+  Introduction to FileSystem
+           /--begining of the file system
+  path:  absolute path and relative path 
+  aws admin,sysops,cicd
+
+ .---indicates the current working directory
+ .. -->navigate one step back to the directory
+ ~-----user home directory
+
+
+/root
+/bin
+/home,/mnt /opt
+/root--is a home for root user
+/home--is home directory for normal user
+all normal users are saved under /home directory 
+
+/sbin--is a directory contains executable binaries as commands which are executed
+          by administrators.[system level commands for administration]
+/bin: is a directory contains executable binaries as commands which are executed
+          by normal users
+/etc
+
+========================================================================
+booting:UEFI---MBR--GRUB--KERNEL --INIT/SYSTED--RUNLEVEL
+
+rebooting
+
+volumes----blocks--block level storage-ebs
+
+
+blocks:
+************\
+1)boot block  2) super block 3) inode 4) data block
+
+file types:
+*************
+ordinary file (-)
+directory file(d)
+link file(l)
+block file (b)
+socket file(s)
+character file(c)
+named pipes--ipc
+
+ls -l * | grep ^d
+
+linux supprts following file system types:
+****************************************
+ext2,ext3,ext4,xfs,btrfs...
+
+block level---EBS----------------->DISK---RAW
+file level------EFS
+object level----S3 SimpleStorageService
+
+parition: mbr /gpt 
+to know the kind of file system type for the specific parition of the disk:  df -Th
+
+
+04/18/2025
+********************
+
+Hybdrid cloud:  onpremise+cloud
+ multi-cloud: combination one or more cloud
+jK&gL4GIs6hWu).dfuL?ZT55yMc*GbG;
+
+/home/ec2-user/d1/d2/d3/d4/f1.txt
+
+
+use of "ln" command:
+*****************
+
+used to search the files in more faster
+used to create the links between files
+also used to  create shortcuts to the files
+types of links:
+*****************
+  softlink(-s)
+  hardlink(default)
+
+==================================================================================
+
+04/19/2025
+******************
+usermanagement in linux:
+********************************
+
+jenkins---user administration
+k8s-----same 
+clous: IAM
+users
+groups
+types of users: normal users,root users,superusers,serviceaccount 
+
+
+root user id is always 0
+users information is saved in /etc/passwd--configuration
+
+04/21/2025:
+************
+what is user
+in linux user is person who acess  the  files and resources
+
+types of users:
+******************
+
+1) super user/admin
+2) normal user
+3)sa
+4)network user:
+5)remote user-ssh-sshd
+
+1) os-level access----linux user management administration
+2)cloud level access-----------IAM 
+HOW TO MANAGE THIS USERS:
+*****************************************
+1)creating users and groups on each and every host manually
+
+2) centralize the users in the corporate dirctory :LDAP,AD
+WHAT IMPORTANCE ABOUT LINUX USER:
+**********************************************
+/etc/passwd
+/etc/shadow
+uid,gid
+/home /bin/bash
+
+/etc/group
+/etc/gshadow
+what is the use of /etc/default/useradd-----/etc/login.defs
+
+/etc/skell 
+what is password againg:
+*******************************
+  
+sudo
+su
+
+su -  : will take to the root user along with his/her home directory
+
+su  will take you to the root user and it doesnt change the targer user home directory
+
+sudo passwd username
+sudo su -
+sudo -i
+
+visudo
+/etc/sudoers 
+last
+lastb
+lastlog
+sudo useradd username
+sudo passwd username
+chage -l
+sudo userdel usrname
+pwck
+
+04/22/2025:
+*******************
+
+*  ssh-key based authrnitication--we dont requires password,thru pem file ec2 or remote machine is going to autheniticate.
+
+
+* password-based authenitication 
+
+  open /etc/ssh/sshd_config
+  change line from no to yes at Passwordauthentication 
+ :wq
+
+  restart the ssd service
+
+technique for connecting to remote server:
+*********************************************
+what is  putty:
+*******************
+
+       is a graphical tool 
+      is a ssh and telnet based tool
+  used to connect to the remote server via graphical window
+
+ 1) download the putty ,puttygen
+2) at the time of launching the ec2 server, user will get .pem file
+3) open putty gen--click "load" --browse the path of pem file
+4)accept some alerts
+ 5) save privatekey file as filename.ppk
+ 6) go to ec2 server --details tab--copy the public ip or public dns
+  7)open putty
+  8) enter ip address or hostname,select ssh and enter port no:22--ssh--auth--credentials--browse the private key file ---open-
+    login as --ec2-user
+ 
+exercise:
+**************
+   login to remote server-like ec2 with usename called urname and set the password...
+
+
+what is nologin shell:
+*********************
+
+certailn application accounts doesnt require login to access the system in the network
+in certain conditions admin also create the normal users with out login shelll
+
+  practice:
+ *************
+
+      1) sudo useradd  -s /sbin/nologin mrsrinivas
+     2) sudo passwd username
+    3) su - username
+   4) verify the o/p and u could get the following info "the current account is not available"
+
+
+  to set back from nologin shell to login shell:
+**************************************************
+   open  /etc/passwd file
+ edit the following line at user: username:x:uid:gid:comment:/bin/bash
+    what is the diff betwem /sbin/nologin and /bin/bash
+
+ 
+
+4/24/25
+*****************
+
+process management in Linux
+*********************************
+what is application,program,process ,service
+ what is process
+what are the diff process states
+process lifecycle
+process queue
+process schedular
+process control table
+proces control block
+types of  processes:  orphan,zombie,daemon
+
+what is systemd
+what is pid
+what is ppid
+importance of pstree,ps ,pidof commands 
+04/25/2025:
+********************
+ ps with arguments
+kill,killall,pkill,pgrep
+importance of signals 
+forground and background process--fg,bg,&
+undestand how to continously monitor the process
+what is priority ,how to increse the priority
+start working on real time monitoring: top,htop,vmstat,iostat,sar..
+aws management console: 
+cli 
+terrform 
+cdk/serverless deployment 
+sdk
+
+
+  kill pid/pname
+  kill -9 pid/pname
+ if u want kill more than one process id which is generate by  speicific process
+  killall processname
+   9=SIGKILL
+  pkill is a command used to kill process based on name
+ what is the diff between killall and pkill
+pgrep is command to search the pid of speific process
+  pgrep process
+
+sleep 10000&----> will create a job in the background with specific job id and start running
+sleep 20000&
+sleep 30000&
+
+ to see the list of jobs are which are running at the background.
+ jobs -l list down the process id of the jobs
+
+ to move background job to foregrouns and run as process:
+******************************************************************
+   jobs 
+  fg jobid
+  to stop running the foreground process and move to back ground:
+******************************************************************************
+ctrl+z
+
+to run the job in baground which is stopped:
+**************************************************
+bg jobid
+
+to kill the jobs:
+**********************
+kill pid or kill -9 pid
+kill with jobid
+  syn: kill %jobid
+to list down the jobs:
+*************************
+jobs
+what is the use of &
+****************************
+use dto move ur process to background
+syn: command or script&
+ctrl+c
+ctrl+z
+   what is the diff between ctrl+c and ctrl+z
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+process queue
+process scheduler
+process priority -
+pct
+pcb
+process states
+
+submit
+holding
+
+running 
+waiting
+
+ready 
+
+terminated
+complete
+
+
+pid
+ppid
+
+
+systemd --1----
+
+types of process:
+**********************
+orphan 
+zombie(z]
+deamon
+ps
+pstree
+pidof
+===================================================================
+
+
+
+what is the use of black-hole/bit-bucket:
+**********************************************
+is a file called /dev/null
+used to discard the output on the screen
+used when we dont require to save o/p in the file as well to avoid interption of executing program
+
+
+ex: yes > /dev/null &
+nice 
+renice
+default value of nice is : 0
+
+range : -19 to 0 to 20
+ low value(-10) gives high priority---high cpu allocated
+high value(+10) gives low priority--less cpu allocated
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
