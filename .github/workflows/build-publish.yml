@@ -15,6 +15,9 @@ jobs:
         cache: maven
     - name: Build with maven   
       run: mvn -B package --file pom.xml
-    - name: deploy ecomm to tomcatserver-running inside Ec2  
-      run: curl -v -u admin:admin -T /home/runner/work/etoe/etoe/target/Ecomm.war 'http://13.232.139.41:8080/manager/text/deploy?path=/Ecomm.war'
+    - name: deploy ecomm to tomcatserver-running inside Ec2 
+      env:
+        tomcatuser: ${{secret.serverusername}}
+        tomcatpwd: ${{secret.serverpwd}}
+      run: curl -v -u $tomcatuser:$tomcatpwd  -T /home/runner/work/etoe/etoe/target/Ecomm.war 'http://13.232.139.41:8080/manager/text/deploy?path=/Ecomm.war'
         
